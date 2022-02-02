@@ -4,6 +4,6 @@
 
 [OthelloArenaPython](https://github.com/KousukeIshii/OthelloArenaPython)上で動作します。
 
-`OthelloAction.py`で import するかファイルを置き換えてください。
+`OthelloAction.py`で`AI.py`を import するかファイルを置き換えてください。
 
 `make.bat`を実行するかリリースから`score.exe`をダウンロードして同じディレクトリに置くと動作します。
