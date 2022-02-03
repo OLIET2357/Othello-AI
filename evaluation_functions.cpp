@@ -30,23 +30,36 @@ score_t liberty(const Board &board)
     score_t ret = 0;
     const int SIZE = board.get_size();
     uint64_t bw = board.get_black() | board.get_white();
-    uint64_t m = 0b1110000010100000111;
+    const uint64_t s = 0b1110000010100000111;
+    const uint64_t l = 0x1F1F1F1F1F1F1F1F;
+    const uint64_t r = 0xF8F8F8F8F8F8F8F8;
 
     for (int i = 0; i < SIZE * SIZE; i++)
     {
-        if ((board.get_black() & (1ULL << i)) == 0)
+        uint64_t hand = 1ULL << i;
+        if ((board.get_black() & hand) == 0)
         {
             continue;
         }
         int j = i - 9;
+        uint64_t m;
         if (j >= 0)
         {
-            ret += __builtin_popcountll(bw & (m << j));
+            m = s << j;
         }
         else
         {
-            ret += __builtin_popcountll(bw & (m >> (-j)));
+            m = s >> (-j);
         }
+        if (i % 8 < 4)
+        {
+            m &= l;
+        }
+        else
+        {
+            m &= r;
+        }
+        ret += __builtin_popcountll(bw & m);
     }
 
     return ret;
