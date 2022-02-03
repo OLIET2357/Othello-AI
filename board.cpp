@@ -48,7 +48,7 @@ uint64_t Board::transfer(uint64_t m, Direction d) const
     case Direction::DIRECTION_LOWER_LEFT:
         return (m & 0x00FEFEFEFEFEFEFE) << (SIZE - 1);
     default:
-        assert(false);
+        assert(false); // Invalid Direction
     }
     return 0;
 }
@@ -70,7 +70,7 @@ uint64_t Board::get_rev(uint64_t mov, Direction direction) const
 
 bool Board::put(uint64_t hand)
 {
-    assert(no_stone(hand));
+    assert(no_stone(hand)); // Stone exists
     uint64_t revs = 0;
     bool flipped = false;
     for (int d = 0; d < 8; d++)
@@ -90,7 +90,7 @@ bool Board::put(uint64_t hand)
 
 Board::Board(uint64_t black, uint64_t white)
 {
-    assert(SIZE != 0);
+    assert(SIZE != 0); // call set_size()
     assert(SIZE <= 8);
     this->black = black;
     this->white = white;
@@ -173,3 +173,4 @@ std::ostream &operator<<(std::ostream &os, const Board &board)
     board.to_stream(os);
     return os;
 }
+

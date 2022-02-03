@@ -49,7 +49,7 @@ int main()
 
     uint64_t hand = 1ULL << (move_y * SIZE + move_x);
 
-    assert(board.put(hand));
+    assert(board.put(hand)); // Can't put there
 
     board.reverse();
 
