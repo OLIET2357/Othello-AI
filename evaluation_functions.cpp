@@ -203,7 +203,7 @@ score_t eval_standard_black(const Board &board)
 EvalFunc eval_standard = [](const Board &board)
 {
     if (__builtin_popcountll(board.get_black()) == 0)
-        return std::numeric_limits<score_t>::min();
+        return std::numeric_limits<score_t>::min() + 1;
     if (__builtin_popcountll(board.get_white()) == 0)
         return std::numeric_limits<score_t>::max();
 
