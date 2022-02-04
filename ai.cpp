@@ -4,6 +4,7 @@
 #include "nega_scout.hpp"
 #include "nega_max.hpp"
 #include "evaluation_functions.hpp"
+#include "puttable.hpp"
 #include "ai.hpp"
 
 #ifdef DEBUG
@@ -31,6 +32,8 @@ score_t AI::get_score(const Board &board) const
     {
         return -nega_max(eval_confident, board, confident_depth);
     }
+
+    // precalc_puttable();
 
     scout_ret_t prescore_hands = nega_scout(eval_standard, board, presearch_depth);
 #ifdef DEBUG

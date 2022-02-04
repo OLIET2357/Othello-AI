@@ -1,5 +1,6 @@
 #include <limits>
 #include "board.hpp"
+#include "puttable.hpp"
 #include "evaluation_functions.hpp"
 
 const score_t MOBILITY_WEIGHT = +1;
@@ -23,6 +24,11 @@ score_t mobility(const Board &board)
             ret++;
     }
     return ret;
+}
+
+score_t mobility_puttable(const Board &board)
+{
+    return __builtin_popcountll(get_puttable(board));
 }
 
 score_t liberty(const Board &board)
