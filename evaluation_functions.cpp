@@ -35,7 +35,7 @@ score_t liberty(const Board &board)
 {
     score_t ret = 0;
     const int SIZE = board.get_size();
-    uint64_t bw = board.get_black() | board.get_white();
+    uint64_t e = ~(board.get_black() | board.get_white());
     const uint64_t s = 0b1110000010100000111;
     const uint64_t l = 0x1F1F1F1F1F1F1F1F;
     const uint64_t r = 0xF8F8F8F8F8F8F8F8;
@@ -65,7 +65,7 @@ score_t liberty(const Board &board)
         {
             m &= r;
         }
-        ret += __builtin_popcountll(bw & m);
+        ret += __builtin_popcountll(e & m);
     }
 
     return ret;
