@@ -166,9 +166,9 @@ score_t x(uint64_t stone)
         ret += __builtin_popcountll(stone & 0x0000000000000200);
     if ((stone & 0x0000000000000080) == 0)
         ret += __builtin_popcountll(stone & 0x0000000000004000);
-    if ((stone & 0x0100000000000080) == 0)
+    if ((stone & 0x0100000000000000) == 0)
         ret += __builtin_popcountll(stone & 0x0002000000000000);
-    if ((stone & 0x8000000000000080) == 0)
+    if ((stone & 0x8000000000000000) == 0)
         ret += __builtin_popcountll(stone & 0x0040000000000000);
 
     return ret;
@@ -181,9 +181,9 @@ score_t c(uint64_t stone)
         ret += __builtin_popcountll(stone & 0x0000000000000102);
     if ((stone & 0x0000000000000080) == 0)
         ret += __builtin_popcountll(stone & 0x0000000000008040);
-    if ((stone & 0x0100000000000080) == 0)
+    if ((stone & 0x0100000000000000) == 0)
         ret += __builtin_popcountll(stone & 0x0201000000000000);
-    if ((stone & 0x8000000000000080) == 0)
+    if ((stone & 0x8000000000000000) == 0)
         ret += __builtin_popcountll(stone & 0x4080000000000000);
 
     return ret;
