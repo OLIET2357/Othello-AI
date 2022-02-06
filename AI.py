@@ -9,6 +9,7 @@ SCORE_PATH = os.path.dirname(__file__)+'\\'+'score.exe'
 
 def getAction(board, moves):
     if len(moves) == 1:
+        print('Only one move, immediately return')
         return moves[0]
 
     stones = 0
