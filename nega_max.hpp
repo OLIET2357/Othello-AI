@@ -5,4 +5,4 @@
 #include "nega_scout.hpp"
 
 score_t nega_max(const EvalFunc &ef, const Board &board, int limit);
-score_t nega_max(const EvalFunc &ef, const Board &board, int limit, scout_ret_t prescore_hands);
+score_t nega_max(const EvalFunc &ef, const Board &board, int limit, const scout_ret_t &prescore_hands);

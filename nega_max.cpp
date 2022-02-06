@@ -57,7 +57,7 @@ score_t nega_max(const EvalFunc &ef, const Board &board, int limit)
     return nega_max(ef, board, limit, std::numeric_limits<score_t>::min() + 1, std::numeric_limits<score_t>::max());
 }
 
-score_t nega_max(const EvalFunc &ef, const Board &board, int limit, scout_ret_t prescore_hands)
+score_t nega_max(const EvalFunc &ef, const Board &board, int limit, const scout_ret_t &prescore_hands)
 {
     score_t alpha = std::numeric_limits<score_t>::min() + 1;
     score_t beta = std::numeric_limits<score_t>::max();
