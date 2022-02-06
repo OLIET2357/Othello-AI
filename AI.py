@@ -8,6 +8,7 @@ SCORE_PATH = os.path.dirname(__file__)+'\\'+'score.exe'
 
 
 def getAction(board, moves):
+    print()
     if len(moves) == 1:
         print('Only one move, immediately return')
         return moves[0]
@@ -19,12 +20,24 @@ def getAction(board, moves):
                 stones += 1
     turn = stones-4+1
 
-    TIMEOUT = 10
-
     SIZE = 8
+    MAX_TURN = SIZE*SIZE-4+1
+    TIMEOUT = 30
+    STANDARD_DEPTH = 8
 
-    i = '4 8 16 12\n'
-    i += str(SIZE)+'\n'
+    print(f'turn:{turn}')
+
+    if turn < MAX_TURN-16:
+        print('Standard Search')
+        method_char = 's'
+        i = f'{method_char}\n{STANDARD_DEPTH}\n'
+    else:
+        print('Perfect Search')
+        method_char = 'p'
+        i = f'{method_char}\n{SIZE**2}\n'
+
+    i += f'{SIZE}\n'
+    # add board to input
     for f in [' '.join(map(str, e)) for e in board]:
         i += f+'\n'
 
@@ -33,17 +46,16 @@ def getAction(board, moves):
     for move in moves:
         def ai(i, move):
             i += f'{move[0]} {move[1]}\n'
-            # print(i)
             try:
                 start = time()
                 result = subprocess.run(
                     (SCORE_PATH,),  input=i.encode(), stdout=subprocess.PIPE, timeout=TIMEOUT)
                 end = time()
                 print(
-                    f'turn:{turn} time:{end-start}')
+                    f'time:{end-start}')
             except subprocess.TimeoutExpired:
                 print(
-                    f'turn:{turn} time:TIMEOUT (>{TIMEOUT}s)')
+                    f'TIMEOUT (>{TIMEOUT}s)')
                 return
 
             if result.returncode == 1:
@@ -70,8 +82,6 @@ def getAction(board, moves):
     if len(rets) == 0:
         print('No moves')
         return random.choice(moves)
-
-    # return max(rets)[1]
 
     # return randomly which has the maximum score
     return random.choice([ret[1] for ret in rets if ret[0] == max(rets)[0]])

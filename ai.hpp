@@ -4,15 +4,20 @@
 #include "board.hpp"
 #include "evaluation_functions.hpp"
 
+enum class Method
+{
+    STANDARD,
+    CONFIDENT,
+    PERFECT,
+};
+
 class AI : BaseAI
 {
 private:
-    int presearch_depth;
-    int standard_depth;
-    int confident_depth;
-    int perfect_depth;
+    Method method;
+    int depth;
 
 public:
-    AI(int presearch_depth, int standard_depth, int confident_depth, int perfect_depth);
+    AI(Method method, int depth);
     score_t get_score(const Board &board) const;
 };

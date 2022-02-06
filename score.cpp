@@ -8,11 +8,10 @@ using namespace std;
 
 int main()
 {
-    int presearch_depth;
-    int standard_depth;
-    int confident_depth;
-    int perfect_depth;
-    cin >> presearch_depth >> standard_depth >> confident_depth >> perfect_depth;
+    char method_char;
+    cin >> method_char;
+    int depth;
+    cin >> depth;
     int SIZE;
     cin >> SIZE;
     Board::set_size(SIZE);
@@ -57,6 +56,26 @@ int main()
     cerr << board << endl;
 #endif
 
-    score_t score = AI(presearch_depth, standard_depth, confident_depth, perfect_depth).get_score(board);
+    Method method;
+    switch (method_char)
+    {
+    case 'S':
+    case 's':
+        method = Method::STANDARD;
+        break;
+    case 'C':
+    case 'c':
+        method = Method::CONFIDENT;
+        break;
+    case 'P':
+    case 'p':
+        method = Method::PERFECT;
+        break;
+    default:
+        assert(false); // Invalid method character
+        return 1;
+    }
+
+    score_t score = AI(method, depth).get_score(board);
     cout << score << endl;
 }
