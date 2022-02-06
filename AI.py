@@ -73,6 +73,7 @@ def getAction(board, moves):
 
     # return max(rets)[1]
 
+    # return randomly which has the maximum score
     return random.choice([ret[1] for ret in rets if ret[0] == max(rets)[0]])
 
 
