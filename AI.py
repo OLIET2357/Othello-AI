@@ -76,4 +76,4 @@ def getAction(board, moves):
     return random.choice([ret[1] for ret in rets if ret[0] == max(rets)[0]])
 
 
-assert __name__ != '__main__'
+assert __name__ != '__main__', "Don't run this file"
