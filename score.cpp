@@ -42,11 +42,11 @@ int main()
     cerr << board << endl;
 #endif
 
-    int move_x;
-    int move_y;
-    cin >> move_x >> move_y;
+    int hand_x;
+    int hand_y;
+    cin >> hand_x >> hand_y;
 
-    uint64_t hand = 1ULL << (move_y * SIZE + move_x);
+    uint64_t hand = 1ULL << (hand_y * SIZE + hand_x);
 
     assert(board.put(hand)); // Can't put there
 
