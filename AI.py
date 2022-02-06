@@ -22,8 +22,10 @@ def getAction(board, moves):
 
     SIZE = 8
     MAX_TURN = SIZE*SIZE-4+1
-    TIMEOUT = 30
+    TIMEOUT_S = 30
     STANDARD_DEPTH = 8
+
+    print(f'TIMEOUT:{TIMEOUT_S}s')
 
     print(f'turn:{turn}')
 
@@ -49,13 +51,13 @@ def getAction(board, moves):
             try:
                 start = time()
                 result = subprocess.run(
-                    (SCORE_PATH,),  input=i.encode(), stdout=subprocess.PIPE, timeout=TIMEOUT)
+                    (SCORE_PATH,),  input=i.encode(), stdout=subprocess.PIPE, timeout=TIMEOUT_S)
                 end = time()
                 print(
-                    f'time:{end-start}')
+                    f'time:{end-start}s')
             except subprocess.TimeoutExpired:
                 print(
-                    f'TIMEOUT (>{TIMEOUT}s)')
+                    f'TIMEOUT_S (>{TIMEOUT_S}s)')
                 return
 
             if result.returncode == 1:
